@@ -22,14 +22,6 @@ EOT
   validation {
     condition = alltrue([
       for k, v in var.kusto_databases : (
-        length(v.name) <= 260
-      )
-    ])
-    error_message = "[from kustoValidate.DatabaseName: invalid when len(value) > 260]"
-  }
-  validation {
-    condition = alltrue([
-      for k, v in var.kusto_databases : (
         length(v.resource_group_name) <= 90
       )
     ])
@@ -51,6 +43,6 @@ EOT
     ])
     error_message = "[from resourcegroups.ValidateName: invalid when len(value) == 0]"
   }
-  # Note: 10 additional provider-side validators are enforced at apply time but not mirrored as validation{} blocks here (bespoke or non-mechanically-translatable).
+  # Note: 8 additional provider-side validators are enforced at apply time but not mirrored as validation{} blocks here (bespoke or non-mechanically-translatable).
 }
 
